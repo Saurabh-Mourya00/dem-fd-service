@@ -1,0 +1,29 @@
+{%extends "blog/base.html" %}
+{%load static%}
+{%block content %}
+<h1>About Me</h1>
+
+<div class="shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="profile-section">
+        <img class="profile-img rounded-circle shadow"  src="{% static 'image/Myimage.jpeg'%}" alt="Profile Image"    style="width: 150px; height: 150px; object-fit: cover; object-position:right;">
+        <div class="profile-details">
+            <h2>Saurabh Mourya </h2>
+            <p>
+                I am a dedicated Django developer with a strong foundation in artificial intelligence (AI) and machine
+                learning (ML), currently completing my final year of BTech specializing in AI and ML. My primary
+                expertise lies in integrating AI-driven solutions within web applications using Django, where I build
+                robust, scalable backends to support intelligent systems. Proficient in Python and familiar with
+                libraries such as TensorFlow, PyTorch, and scikit-learn, I’ve worked on projects that combine data
+                analysis, predictive modeling, and web development to deliver powerful, user-centered applications. My
+                recent projects include developing a chatbot with NLP capabilities, a property management platform, and
+                a machine learning model for heart disease prediction, each aimed at leveraging data-driven insights for
+                practical applications. As I advance in my career, I am eager to further enhance my skills in AI and ML,
+                focusing on innovative solutions that harness the full potential of machine learning within
+                user-friendly web platforms.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+{%endblock content %}
