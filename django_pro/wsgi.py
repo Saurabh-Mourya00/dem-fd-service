@@ -16,4 +16,4 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_pro.settings")
 application = get_wsgi_application()
 
 
-app=application         
+         
