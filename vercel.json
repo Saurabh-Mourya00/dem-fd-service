@@ -8,10 +8,14 @@
         "runtime": "python3.12",
         "maxLambdaSize": "50mb"
       }
+    },
+    {
+      "src": "django_pro/wsgi.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/(.*)", "dest": "build.sh" }
+    { "src": "/(.*)", "dest": "django_pro/wsgi.py" }
   ]
 }
