@@ -267,15 +267,17 @@ TEMPLATES = [
 WSGI_APPLICATION = "django_pro.wsgi.application"
 
 # Static and media files
+# --- Static & Media configuration for Vercel ---
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # final collected location
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # where your source CSS/JS/images live
 
+# Serve compressed static files via Whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Media files (if you use user uploads)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Default primary key
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -323,3 +325,6 @@ else:
             'PORT': config('DATABASE_PORT'),
         }
     }
+
+import logging
+logging.basicConfig(level=logging.INFO)
