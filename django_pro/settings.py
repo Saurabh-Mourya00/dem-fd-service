@@ -328,3 +328,42 @@ else:
 
 import logging
 logging.basicConfig(level=logging.INFO)
+
+
+# if USE_SUPABASE:
+#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#     # Use Supabase Storage S3-compatible API
+#     # NOTE: Supabase S3 gateway uses dedicated S3 credentials, NOT the normal API keys.
+#     # Keep previous lines for reference:
+#     # AWS_ACCESS_KEY_ID = config('SUPABASE_KEY')
+#     # AWS_SECRET_ACCESS_KEY = config('SUPABASE_SECRET')
+#     AWS_ACCESS_KEY_ID = config('SUPABASE_S3_ACCESS_KEY_ID')
+#     AWS_SECRET_ACCESS_KEY = config('SUPABASE_S3_SECRET_ACCESS_KEY')
+#     # Prefer bucket from env to avoid hard-coding
+#     AWS_STORAGE_BUCKET_NAME = config('SUPABASE_BUCKET', default='profile')
+#     # S3 endpoint and public object domain derived from SUPABASE_URL
+#     _SUPABASE_URL = config('SUPABASE_URL')
+#     # Path-style addressing is required for Supabase S3 API
+#     AWS_S3_ADDRESSING_STYLE = 'path'
+#     AWS_S3_ENDPOINT_URL = f"{_SUPABASE_URL}/storage/v1/s3"
+#     # Generate public, unsigned URLs that match Supabase public bucket scheme
+#     AWS_S3_CUSTOM_DOMAIN = f"{_SUPABASE_URL.replace('https://', '').replace('http://', '')}/storage/v1/object/public"
+#     AWS_DEFAULT_ACL = 'public-read'
+#     AWS_QUERYSTRING_AUTH = False
+#     AWS_S3_FILE_OVERWRITE = False
+#     # Ensure MEDIA_URL points to Supabase public object base
+#     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
+
+
+AWS_S3_REGION_NAME = 'ap-south-1'  # e.g. 'us-east-1'
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+
+# Optionally:
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+# Set media / default file storage
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
